@@ -9,6 +9,7 @@ Parameters:
     ConstraintDescription: The Security Account ID must be a 12 character string.
     MinLength: 12
     MaxLength: 12
+    Default: 222665498645
   OrganizationId:
     Type: String
     Description: AWS Organizations ID for the Control Tower. This is used to restrict permissions to least privilege.
@@ -16,6 +17,7 @@ Parameters:
     MaxLength: 12
     AllowedPattern: '^[o][\-][a-z0-9]{10}$'
     ConstraintDescription: The Org Id must be a 12 character string starting with o- and followed by 10 lower case alphanumeric characters
+    Default: o-2e90xaxvnz
   RegionFilter:
     Type: String
     Description: Should GuardDuty be enabled for all GuardDuty supported regions, or only Control Tower supported regions?
@@ -26,6 +28,7 @@ Parameters:
   S3SourceBucket:
     Type: String
     Description: Which S3 bucket contains the guardduty_enabler.zip file for the GuardDutyEnabler lambda function?
+    Default: "ati-guardduty-o-2e90xaxvnz"
   S3SourceFile:
     Type: String
     Description: What is the S3 path to the zip file for the GuardDutyEnabler lambda function?
@@ -122,7 +125,7 @@ Resources:
       Code:
         S3Bucket: !Ref S3SourceBucket
         S3Key: !Ref S3SourceFile
-      Runtime: python3.7
+      Runtime: python3.8
       MemorySize: 128
       Timeout: 300
       Environment:

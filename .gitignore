@@ -637,4 +637,4 @@ amplifyxc.config
 
 # Code packaging working directory
 src/.package
-src/*.zip
+#src/*.zip
